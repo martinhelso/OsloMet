@@ -1,6 +1,19 @@
 # OsloMet
 Beamer theme for OsloMet - Oslo Metropolitan University
+
+Available on [Overleaf](https://www.overleaf.com/latex/templates/oslomet-beamer-theme/wknwhwkrzvgk).
+
 [![Title frame](https://github.com/martinhelso/OsloMet/blob/master/examples/first-page.png)](https://github.com/martinhelso/OsloMet/blob/master/examples/main.pdf)
+
+## Logo
+The logo in the lower right corner can be removed from a specific `frame` using the macro `\hidelogo` outside of the `frame` like this:
+```LaTeX
+\hidelogo
+\begin{frame}
+    ...
+\end{frame}
+```
+Use `\showlogo` in the same manner to make the logo appear again. 
 
 ## Options
 Options are given as
@@ -63,16 +76,6 @@ In addition, `OsloMet` defines these environments:
 * `remark`
 * `remarks`
 
-## Logo
-The logo in the lower right corner can be removed from a specific `frame` using the macro `\hidelogo` outside of the `frame` like this:
-```LaTeX
-\hidelogo
-\begin{frame}
-    ...
-\end{frame}
-```
-Use `\showlogo` in the same manner to make the logo appear again. 
-
 ## Dependencies
 `OsloMet` imports the following packages:
 * `babel`
@@ -87,8 +90,6 @@ Use `\showlogo` in the same manner to make the logo appear again.
 
 ## Credit
 
-Cover photo: Ronny Østnes / OsloMet
-
-https://www.flickr.com/photos/hioa/12590169215/in/album-72157627082396818/
+Cover photo: [Ronny Østnes / OsloMet](https://www.flickr.com/photos/hioa/12590169215/in/album-72157627082396818/)
 
 [![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/martinhelso/OsloMet/blob/master/LICENSE)

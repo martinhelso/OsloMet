@@ -4,7 +4,7 @@
 % Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
 % Martin Helsø (martibhe@math.uio.no)
 %
-% Version 03-06-2020
+% Version 05-06-2020
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -240,6 +240,8 @@
                           series = \mdseries\normalfont}
 \setbeamerfont{frametitle}{size = \LARGE,
                            series = \bfseries}
+\setbeamerfont{sectiontitle}{size   = \Huge,
+                             series = \bfseries}
 \setbeamerfont{title in head/foot} {series = \bfseries}
 \setbeamerfont{author in head/foot}{series = \bfseries}
 \setbeamerfont{date in head/foot}  {series = \bfseries}
@@ -333,6 +335,20 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\renewcommand{\sectionpage}
+{{
+    \setbeamercolor{background canvas}{bg = omyellow}
+    \begin{frame}[c, plain, noframenumbering]
+        \centering
+        \usebeamerfont{sectiontitle}
+        \vskip\baselineskip
+        \insertsection
+    \end{frame}
+}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setbeamertemplate{frametitle}
 {

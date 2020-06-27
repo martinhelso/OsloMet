@@ -1,0 +1,91 @@
+% Theme for OsloMet – Oslo Metropolitan University
+%
+% Implemented by:
+% Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
+% Martin Helsø (martibhe@math.uio.no)
+%
+% Version 14-06-2020
+
+
+\mode<presentation>
+
+\DeclareOptionBeamer{}{}
+
+%% Font:
+\providebool{neohellenic}
+\providebool{latinmodern}
+\DeclareOptionBeamer{SansSerif}
+{
+    \def \OMfont {default}
+    \setbool{neohellenic}{true}
+    \setbool{latinmodern}{false}
+}
+\DeclareOptionBeamer{MathSerif}
+{
+    \def \OMfont {professionalfonts}
+    \setbool{neohellenic}{false}
+    \setbool{latinmodern}{false}
+}
+\DeclareOptionBeamer{Serif}
+{
+    \def \OMfont {serif}
+    \setbool{neohellenic}{false}
+    \setbool{latinmodern}{true}
+}
+
+\ExecuteOptionsBeamer{SansSerif}
+\ProcessOptionsBeamer
+
+% Use a neohellenic font from the Greek Font Society
+% for small, greek letters. It is a sans serif that
+% matches Helvetica better in style and weight than
+% the standard Computer Modern.
+\ifbool{neohellenic}
+{
+    \RequirePackage[default]{gfsneohellenic}
+}
+{}
+
+\ifbool{latinmodern}
+{
+    \renewcommand{\rmdefault}{lmr} % Latin Modern Roman
+}
+{
+  \renewcommand{\rmdefault}{pbk}  % Bookman
+}
+
+\renewcommand{\sfdefault}{phv} % Helvetica
+
+\usefonttheme{\OMfont}
+
+\setbeamerfont*{titlelike}{series = \bfseries}
+\setbeamerfont*{title}{parent = titlelike, size = \huge}
+\setbeamerfont*{title in head/foot}{parent = titlelike}
+\setbeamerfont*{title in sidebar}{parent = titlelike, size=\tiny}
+
+\setbeamerfont*{subtitle}{size = \Large, series = \mdseries\normalfont}
+
+\setbeamerfont*{author}{parent = titlelike, size = \normalsize}
+\setbeamerfont*{author in head/foot}{parent = titlelike}
+\setbeamerfont*{author in sidebar}{parent = titlelike, size = \tiny}
+
+\setbeamerfont*{date}{parent = titlelike}
+\setbeamerfont*{date in head/foot}{parent = date}
+\setbeamerfont*{date in sidebar}{parent = date}
+
+\setbeamerfont*{section name}{size = \Large}
+\setbeamerfont*{section page}{size = \Huge, parent = titlelike}
+
+\setbeamerfont*{section in toc}{parent = titlelike}
+\setbeamerfont*{section in head/foot}{parent = titlelike}
+\setbeamerfont*{section in sidebar}{parent = titlelike, size = \tiny}
+
+\setbeamerfont*{bibliography entry author}{series = \bfseries}
+\setbeamerfont*{bibliography entry title}{series = \mdseries}
+
+\setbeamerfont*{frametitle}{parent = titlelike, size = \LARGE}
+
+\setbeamerfont*{abstract title}{parent = {abstract, titlelike}, size= \normalsize}
+
+\mode
+<all>

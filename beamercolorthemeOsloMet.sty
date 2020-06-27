@@ -1,0 +1,110 @@
+% Theme for OsloMet – Oslo Metropolitan University
+%
+% Implemented by:
+% Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
+% Martin Helsø (martibhe@math.uio.no)
+%
+% Version 14-06-2020
+
+
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Define Colors %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Primary
+\definecolor{omyellow}{RGB}{255, 220, 0}
+
+%% Secondary
+\definecolor{omred}{RGB}{224, 45, 0}
+\definecolor{omblue}{RGB}{0, 122, 204}
+
+%% Tertiary
+\definecolor{omlightblue}{RGB}{64, 228, 255}
+\definecolor{omdarkred}{RGB}{153, 0, 43}
+\definecolor{omdarkblue}{RGB}{0, 0, 100}
+\definecolor{omorange}{RGB}{255, 129, 0}
+
+%% Basic black/white/gray
+\definecolor{omgray}{cmyk}{0, 0, 0, 0.2}
+\definecolor{omblack}{rgb}{0, 0, 0}
+\definecolor{omwhite}{rgb}{1, 1, 1}
+
+\colorlet{alert}{omred}
+\colorlet{beameralert}{alert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Set up Colors %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamercolor*{normal text}{fg = omblack, bg = omwhite}
+\setbeamercolor*{alerted text}{fg=omred}
+\setbeamercolor*{example text}{fg=omblue}
+
+% We want \structure to give blue text,
+% but local structure elements to be yellow
+\setbeamercolor*{structure}{fg = omblue}
+\setbeamercolor*{local structure}{fg = omyellow}
+
+% Many elements are black text on yellow background
+\setbeamercolor{black on yellow}{fg = omblack, bg = omyellow}
+
+\setbeamercolor*{palette primary}{use=structure, fg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=structure.fg!75!omred}
+\setbeamercolor*{palette tertiary}{use=structure,fg=structure.fg!50!omred}
+\setbeamercolor*{palette quaternary}{fg=omred}
+
+\setbeamercolor*{palette sidebar secondary}{fg = omdarkblue}
+\setbeamercolor*{palette sidebar quarternary}{fg = omdarkblue}
+
+% All text elements should be in black,
+% even though structure color is blue
+\setbeamercolor{textlike}{parent = normal text}
+\setbeamercolor*{titlelike}{parent = textlike}
+
+\setbeamercolor*{title in head/foot}{parent=title}
+\setbeamercolor*{title in sidebar}{parent=title}
+
+\setbeamercolor*{author}{parent=textlike}
+\setbeamercolor*{author in head/foot}{parent=author}
+
+\setbeamercolor*{institute}{parent=textlike}
+\setbeamercolor*{institute in head/foot}{parent=institute}
+
+\setbeamercolor*{date}{parent=textlike}
+\setbeamercolor*{date in head/foot}{parent=date}
+
+\setbeamercolor*{section in toc}{parent=textlike}
+\setbeamercolor*{section in head/foot}{parent=section}
+
+\setbeamercolor*{headline}{parent = black on yellow}
+\setbeamercolor*{footline}{parent = black on yellow}
+
+\setbeamercolor*{block body}{bg = omgray}
+\setbeamercolor*{block body alerted}{parent = block body}
+\setbeamercolor*{block body example}{parent = block body}
+\setbeamercolor*{block title}{parent=black on yellow}
+\setbeamercolor*{block title alerted}{use = alerted text, bg=alerted text.fg, fg = omwhite}
+\setbeamercolor*{block title example}{use = example text, bg = example text.fg, fg = omwhite}
+
+\setbeamercolor*{item projected}{parent = black on yellow}
+
+% Local structure is yellow, but yellow-on-white doesn't work
+\setbeamercolor*{description item}{parent=structure}
+
+\setbeamercolor*{bibliography item}{fg=omblack}
+
+\setbeamercolor*{bibliography entry author}{parent = textlike}
+\setbeamercolor*{bibliography entry title}{parent = textlike}
+\setbeamercolor*{bibliography entry location}{parent = textlike}
+\setbeamercolor*{bibliography entry note}{parent = textlike}
+
+\setbeamercolor*{abstract title}{parent=titlelike}
+
+\setbeamercolor*{qed symbol}{parent = local structure}
+
+%% Title page and section page should be black on yellow
+\setbeamercolor*{title page}{parent = black on yellow}
+\setbeamercolor*{section page}{parent = black on yellow}
+\mode
+<all>

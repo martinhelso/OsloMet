@@ -3,7 +3,7 @@ Beamer theme for OsloMet - Oslo Metropolitan University
 
 Available on [Overleaf](https://www.overleaf.com/latex/templates/oslomet-beamer-theme/wknwhwkrzvgk).
 
-[![Title frame](https://github.com/martinhelso/OsloMet/blob/master/examples/first-page.png)](https://github.com/martinhelso/OsloMet/blob/master/examples/main.pdf)
+[![Link to example PDF](https://i.imgur.com/iPYKV66.png)](https://github.com/martinhelso/OsloMet/releases/download/refs/heads/master/main.pdf)
 
 ## Logo
 The logo in the lower right corner can be removed from a specific `frame` using the macro `\hidelogo` outside of the `frame` like this:
@@ -14,6 +14,10 @@ The logo in the lower right corner can be removed from a specific `frame` using 
 \end{frame}
 ```
 Use `\showlogo` in the same manner to make the logo appear again. 
+
+## Section Page
+The command `\SectionPage` inserts a `[NoFrameNumbering, plain]` frame with yellow background issuing the `\sectionpage` command.
+The command `\SectionPage` is used outside of a `frame`, unlike `\sectionpage`. 
 
 ## Options
 Options are given as

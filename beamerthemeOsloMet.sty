@@ -4,24 +4,16 @@
 % Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
 % Martin Helsø (martibhe@math.uio.no)
 %
-% Version 05-06-2020
+% Version 14-06-2020
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\RequirePackage[scaled]{beramono}
-\RequirePackage{calc}
-\RequirePackage{etoolbox}
-\RequirePackage{eso-pic}
 \RequirePackage[LGR, T1]{fontenc}
-\RequirePackage{thmtools}
-\RequirePackage{tikz}
 \hypersetup{colorlinks,
             urlcolor  = omblue,
             linkcolor =,
             citecolor =}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31,31 +23,26 @@
 {
     \def \OMlang {eng}
     \def \OMlangII {american}
-    \def \OMphoto {Photo}
 }
 \DeclareOptionBeamer{english}
 {
     \def \OMlang {eng}
     \def \OMlangII {english}
-    \def \OMphoto {Photo}
 }
 \DeclareOptionBeamer{UKenglish}
 {
     \def \OMlangII {english}\def \OMlang {eng}
     \def \OMlangII {UKenglish}
-    \def \OMphoto {Photo}
 }
 \DeclareOptionBeamer{USenglish}
 {
     \def \OMlang {eng}
     \def \OMlangII {USenglish}
-    \def \OMphoto {Photo}
 }
 \DeclareOptionBeamer{norsk}
 {
     \def \OMlang {bm}
     \def \OMlangII {norsk}
-    \def \OMphoto {Foto}
     \pretolerance = 2000
     \tolerance    = 6000
     \hbadness     = 6000
@@ -64,7 +51,6 @@
 {
     \def \OMlang {nn}
     \def \OMlangII {nynorsk}
-    \def \OMphoto {Foto}
     \pretolerance = 2000
     \tolerance    = 6000
     \hbadness     = 6000
@@ -77,52 +63,21 @@
 \DeclareOptionBeamer{t}{ \beamer@centeredfalse }
 
 
-%% Theorem numbers:
-\DeclareOptionBeamer{unnumbered}{ \def \OMtheorem {}          }
-\DeclareOptionBeamer{numbered}  { \def \OMtheorem {numbered}  }
-\DeclareOptionBeamer{AMS}       { \def \OMtheorem {ams style} }
+%% Theorem numbers, gets sent along to inner theme:
+\DeclareOptionBeamer{unnumbered}{\PassOptionsToPackage{unnumbered}{beamerinnerthemeOsloMet}}
+\DeclareOptionBeamer{numbered}  {\PassOptionsToPackage{numbered}{beamerinnerthemeOsloMet}}
+\DeclareOptionBeamer{AMS}       {\PassOptionsToPackage{AMS}{beamerinnerthemeOsloMet}}
 
 
-%% Font:
-\providebool{neohellenic}
-\providebool{latinmodern}
-\DeclareOptionBeamer{SansSerif}
-{
-    \def \OMfont {default}
-    \setbool{neohellenic}{true}
-    \setbool{latinmodern}{false}
-}
-\DeclareOptionBeamer{OMSerif}
-{
-    \def \OMfont {professionalfonts}
-    \setbool{neohellenic}{false}
-    \setbool{latinmodern}{false}
-}
-\DeclareOptionBeamer{Serif}
-{
-    \def \OMfont {serif}
-    \setbool{neohellenic}{false}
-    \setbool{latinmodern}{true}
-}
+%% Font, gets sent along to fonttheme:
+\DeclareOptionBeamer{SansSerif}{\PassOptionsToPackage{SansSerif}{beamerfontthemeOsloMet}}
+\DeclareOptionBeamer{MathSerif}{\PassOptionsToPackage{MathSerif}{beamerfontthemeOsloMet}}
+\DeclareOptionBeamer{Serif}{\PassOptionsToPackage{Serif}{beamerfontthemeOsloMet}}
 
 
 %% Automatic title frame:
-\DeclareOptionBeamer{TitlePage} { \def \OMfirstframe {\TitlePage}  }
-\DeclareOptionBeamer{NoTitlePage} { \def \OMfirstframe {} }
-
-
-%%% Widescreen option
-\providebool{wscreen}
-\DeclareOptionBeamer{43}{\setbool{wscreen}{false}}
-\DeclareOptionBeamer{widescreen}
-{
-    \setbool{wscreen}{true}
-    \RequirePackage[orientation = landscape,
-                    size        = custom,
-                    width       = 16,
-                    height      = 9,
-                    scale       = 0.5]{beamerposter}
-}
+\DeclareOptionBeamer{TitlePage}{\PassOptionsToPackage{TitlePage}{beamerinnerthemeOsloMet}}
+\DeclareOptionBeamer{NoTitlePage}{\PassOptionsToPackage{NoTitlePage}{beamerinnerthemeOsloMet}}
 
 
 \ExecuteOptionsBeamer{english}
@@ -130,583 +85,22 @@
 \ExecuteOptionsBeamer{unnumbered}
 \ExecuteOptionsBeamer{SansSerif}
 \ExecuteOptionsBeamer{TitlePage}
-\ExecuteOptionsBeamer{43}
 \ProcessOptionsBeamer
-
-
-\AtBeginDocument{ \OMfirstframe }
 
 
 \RequirePackage[\OMlangII]{babel}
 
-
-% Use a neohellenic font from the Greek Font Society
-% for small, greek letters. It is a sans serif that
-% matches Helvetica better in style and weight than
-% the standard Computer Modern.
-\ifbool{neohellenic}
-{
-    \RequirePackage[default]{gfsneohellenic}
-}
-{}
-
-\ifbool{latinmodern}
-{
-    \renewcommand{\rmdefault}{lmr} % Latin Modern Roman
-}
-{
-   \renewcommand{\rmdefault}{pbk}  % Bookman
-}
-
-\renewcommand{\sfdefault}{phv} % Helvetica
-
-
 %% Allow more stretching
 \setlength{\emergencystretch}{3em}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%% Official colours:
-
-%% Primary
-\definecolor{omyellow}{RGB}{255, 220, 0}
-
-%% Secondary
-\definecolor{omred}{RGB}{224, 45, 0}
-\definecolor{omblue}{RGB}{0, 122, 204}
-
-%% Tertiary
-\definecolor{omlightblue}{RGB}{64, 228, 255}
-\definecolor{omdarkred}{RGB}{153, 0, 43}
-\definecolor{omdarkblue}{RGB}{0, 0, 100}
-\definecolor{omorange}{RGB}{255, 129, 0}
-
-\definecolor{omgray}{cmyk}{0, 0, 0, 0.2}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \mode<presentation>
 
-
-\useinnertheme{rectangles}
-\usefonttheme{\OMfont}
-
-
-\setbeamertemplate{theorems}[\OMtheorem]
-\setbeamertemplate{qed symbol}{\textcolor{omyellow}{\(\blacksquare\)}}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{caption label separator}{: }
-
-
-%% Colours:
-\setbeamercolor{structure}{fg = omblue}
-\setbeamercolor{frametitle}{fg = black}
-\setbeamercolor{block title}{fg = black,
-                             bg = omyellow}
-\setbeamercolor{block body} {bg = omgray}
-\setbeamercolor{block title example}{fg = white,
-                                     bg = omblue}
-\setbeamercolor{block body example} {bg = omgray}
-\setbeamercolor{block title alerted}{fg = white,
-                                     bg = omred}
-\setbeamercolor{block body alerted} {bg = omgray}
-\setbeamercolor{alerted text} {fg = omred}
-\setbeamercolor{footnote mark}{fg = omred}
-\setbeamercolor{section in head/foot}{fg = black,
-                                      bg = omyellow}
-\setbeamercolor{section in toc}{fg = black}
-\setbeamercolor{section number projected}{bg = omyellow, fg = black}
-\setbeamercolor{subsection number projected}{bg = omyellow, fg = black}
-\setbeamercolor{subsubsection number projected}{bg = omyellow, fg = black}
-\setbeamercolor{itemize item}{fg = omyellow}
-\setbeamercolor{itemize subitem}{fg = omyellow}
-\setbeamercolor{itemize subsubitem}{fg = omyellow}
-\setbeamercolor{item projected}{fg = black, bg = omyellow}
-\setbeamercolor{bibliography item}{fg = black}
-\setbeamercolor{bibliography entry author}{fg = black}
-\setbeamercolor{bibliography entry location}{fg = black}
-
-
-%% Fonts:
-\setbeamerfont{author}    {size   = \normalsize,
-                           series = \bfseries}
-\setbeamerfont{title}     {size   = \huge,
-                           series = \bfseries}
-\setbeamerfont{subtitle}  {size   = \Large,
-                          series = \mdseries\normalfont}
-\setbeamerfont{frametitle}{size = \LARGE,
-                           series = \bfseries}
-\setbeamerfont{sectiontitle}{size   = \Huge,
-                             series = \bfseries}
-\setbeamerfont{title in head/foot} {series = \bfseries}
-\setbeamerfont{author in head/foot}{series = \bfseries}
-\setbeamerfont{date in head/foot}  {series = \bfseries}
-\setbeamerfont{section in toc}     {series = \bfseries}
-\setbeamerfont{bibliography entry author}{series = \bfseries}
-\setbeamerfont{bibliography entry title}{series = \mdseries}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\setbeamertemplate{title page}
-{
-    \AddToShipoutPictureFG*
-    {
-        \AtPageUpperLeft
-        {
-            \hspace{0.9cm}
-            \parbox[t][2cm][b]{\textwidth}
-            {
-                \includegraphics[height = 1cm]{OM-images/OM-logo.pdf}
-            }
-        }
-
-        \AtPageLowerLeft
-        {
-            \hspace{0.9cm}
-            \parbox[b][0.12\paperheight][t]{\textwidth}
-            {
-                \includegraphics[height = 0.05\paperheight]
-                {OM-images/OM-signature.pdf}
-            }
-        }
-        \AtPageUpperLeft
-        {
-            \makebox[\paperwidth][r]
-            {
-                \parbox[t][\paperheight][b]{4cm}
-                {%
-                    \includegraphics[height = \paperheight]
-                    {OM-images/OM-pipe.jpg}
-                }%
-            }
-        }
-        \AtPageLowerLeft
-        {
-            \makebox[\paperwidth][r]
-            {
-                \parbox[b][0.2cm][t]{4cm}
-                {
-                    \centering
-                    \color{omyellow}
-                    \resizebox{2cm}{!}
-                    {\OMphoto{}: Ronny Østnes / OsloMet}
-                }
-            }
-        }
-    }
-
-    \vspace{2cm}
-    \hspace*{0pt}
-    \begin{minipage}[b][\paperheight - 3cm]{\paperwidth - 5.3cm}
-        \raggedright
-
-        \vspace{\stretch{0.5}}
-
-        \usebeamerfont{title}
-        \inserttitle
-        \\[0.2ex]
-        \usebeamerfont{subtitle}
-        \insertsubtitle
-
-        \vspace{\stretch{1}}
-
-        \usebeamerfont{author}
-        \insertauthor
-
-        \vspace{0.135\paperheight}
-    \end{minipage}
-}
-
-
-\newcommand{\TitlePage}
-{{
-    \setbeamercolor{background canvas}{bg = omyellow}
-    \begin{frame}[b, plain, noframenumbering]
-        \titlepage
-    \end{frame}
-}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\renewcommand{\sectionpage}
-{{
-    \setbeamercolor{background canvas}{bg = omyellow}
-    \begin{frame}[c, plain, noframenumbering]
-        \centering
-        \usebeamerfont{sectiontitle}
-        \vskip\baselineskip
-        \insertsection
-    \end{frame}
-}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\setbeamertemplate{frametitle}
-{
-    \vbox
-    {
-        \strut\insertframetitle\strut
-    }
-    \vskip-1.3ex
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\setbeamertemplate{headline}{ \vspace*{1.7 mm} }
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\setbeamertemplate{footline}
-{
-    \hbox to \paperwidth
-    {%
-        \begin{beamercolorbox}[wd = \paperwidth,
-                               ht = 2.25ex,
-                               dp = 1ex]
-                              {section in head/foot}
-
-                \hspace*{0.9cm}
-                \usebeamerfont{author in head/foot}
-                \insertshortauthor
-                \hfill
-                \usebeamerfont{title in head/foot}
-                \insertshorttitle
-                \hfill
-                \usebeamerfont{date in head/foot}
-                \insertshortdate
-                \hspace*{2em}
-                \insertframenumber{} / \inserttotalframenumber
-                \hspace*{1cm}
-        \end{beamercolorbox}
-    }
-    \vskip0pt
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\newcommand{\hidelogo}{\logo{}}
-\newcommand{\showlogo}
-{
-    \logo
-    {
-        \ifbool{wscreen}{
-            \includegraphics[height = 0.1\paperheight, viewport = 0 0 540 400]
-            {OM-images/OM-logo}
-        }{
-            \includegraphics[height = 0.1\paperheight, viewport = 0 0 520 400]
-            {OM-images/OM-logo}
-        }
-    }
-}
-\showlogo
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%% Redefine blocks with larger indentations,
-%% and some environmental colours:
-\setbeamertemplate{block begin}
-{
-    \setbeamercolor{itemize item}   {fg = block title.bg}
-    \setbeamercolor{itemize subitem}{fg = block title.bg}
-    \setbeamercolor{itemize subitem}{fg = block title.bg}
-    \setbeamercolor{item projected}{fg = block title.fg,
-                                    bg = block title.bg}
-    \setbeamercolor{description item}{fg = structure}
-    \setbeamercolor{caption name}    {fg = structure}
-
-    \unskip
-    \vskip1.3ex
-
-    \begin{beamercolorbox}[ht        = 2.4  ex,
-                           dp        = 1    ex,
-                           leftskip  = 0.75 ex,
-                           rightskip = 0.75 ex]
-                          {block title}
-
-        \usebeamerfont*{block title}
-        \insertblocktitle
-    \end{beamercolorbox}
-
-    \nointerlineskip
-
-    \usebeamerfont{block body}
-    \begin{beamercolorbox}[dp        = 1    ex,
-                           leftskip  = 0.75 ex,
-                           rightskip = 0.75 ex,
-                           vmode]
-                          {block body}
-        \vspace*{1ex}
-        \begin{minipage}{\textwidth - 1.5ex}
-}
-
-\setbeamertemplate{block end}
-{
-        \end{minipage}
-    \vskip0pt
-    \end{beamercolorbox}
-    \vskip1.3ex
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\setbeamertemplate{block example begin}
-{
-    \setbeamercolor{itemize item}      {fg = block title example.bg}
-    \setbeamercolor{itemize subitem}   {fg = block title example.bg}
-    \setbeamercolor{itemize subsubitem}{fg = block title example.bg}
-    \setbeamercolor{item projected}{fg = block title example.fg,
-                                    bg = block title example.bg}
-    \setbeamercolor{description item}{fg = structure}
-    \setbeamercolor{caption name}    {fg = structure}
-
-    \unskip
-    \vskip1.3ex
-
-    \begin{beamercolorbox}[ht        = 2.4  ex,
-                           dp        = 1    ex,
-                           leftskip  = 0.75 ex,
-                           rightskip = 0.75 ex]
-                          {block title example}
-
-        \usebeamerfont*{block title example}
-        \insertblocktitle
-    \end{beamercolorbox}
-
-    \nointerlineskip
-
-    \usebeamerfont{block body example}
-    \begin{beamercolorbox}[dp        = 1    ex,
-                           leftskip  = 0.75 ex,
-                           rightskip = 0.75 ex,
-                           vmode]
-                          {block body example}
-        \vspace*{1ex}
-        \begin{minipage}{\textwidth - 1.5ex}
-}
-
-\setbeamertemplate{block example end}
-{
-        \end{minipage}
-    \vskip0pt
-    \end{beamercolorbox}
-    \vskip1.3ex
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\setbeamertemplate{block alerted begin}
-{
-    \setbeamercolor{itemize item}      {fg = block title alerted.bg}
-    \setbeamercolor{itemize subitem}   {fg = block title alerted.bg}
-    \setbeamercolor{itemize subsubitem}{fg = block title alerted.bg}
-    \setbeamercolor{item projected}{fg = block title alerted.fg,
-                                    bg = block title alerted.bg}
-    \setbeamercolor{description item}{fg = alert}
-    \setbeamercolor{caption name}    {fg = alert}
-
-    \unskip
-    \vskip1.3ex
-
-    \begin{beamercolorbox}[ht        = 2.4  ex,
-                           dp        = 1    ex,
-                           leftskip  = 0.75 ex,
-                           rightskip = 0.75 ex]
-                          {block title alerted}
-
-        \usebeamerfont*{block title alerted}
-        \insertblocktitle
-    \end{beamercolorbox}
-
-    \nointerlineskip
-
-    \usebeamerfont{block body alerted}
-    \begin{beamercolorbox}[dp        = 1    ex,
-                           leftskip  = 0.75 ex,
-                           rightskip = 0.75 ex,
-                           vmode]
-                          {block body alerted}
-        \vspace*{1ex}
-        \begin{minipage}{\textwidth - 1.5ex}
-}
-
-\setbeamertemplate{block alerted end}
-{
-        \end{minipage}
-    \vskip0pt
-    \end{beamercolorbox}
-    \vskip1.3ex
-
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usefonttheme{OsloMet}
+\usecolortheme{OsloMet}
+\useoutertheme{OsloMet}
+\useinnertheme[\OMlang]{OsloMet}
 
 
 \mode<all>
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%% Translate environment names to Norwegian:
-\uselanguage {\OMlang}
-\languagepath{\OMlang}
-
-\deftranslation[to = bm]{assumption} {antakelse}
-\deftranslation[to = bm]{Assumption} {Antakelse}
-\deftranslation[to = nn]{assumption} {f\o{}resetnad}
-\deftranslation[to = nn]{Assumption} {F\o{}resetnad}
-\deftranslation[to = bm]{axiom}      {aksiom}
-\deftranslation[to = bm]{Axiom}      {Aksiom}
-\deftranslation[to = nn]{axiom}      {aksiom}
-\deftranslation[to = nn]{Axiom}      {Aksiom}
-\deftranslation[to = bm]{calculation}{utregning}
-\deftranslation[to = bm]{Calculation}{Utregning}
-\deftranslation[to = nn]{calculation}{utrekning}
-\deftranslation[to = nn]{Calculation}{Utrekning}
-\deftranslation[to = bm]{computation}{beregning}
-\deftranslation[to = bm]{Computation}{Beregning}
-\deftranslation[to = nn]{computation}{berekning}
-\deftranslation[to = nn]{Computation}{Berekning}
-\deftranslation[to = bm]{conjecture} {formodning}
-\deftranslation[to = bm]{Conjecture} {Formodning}
-\deftranslation[to = nn]{conjecture} {forventing}
-\deftranslation[to = nn]{Conjecture} {Forventing}
-\deftranslation[to = bm]{corollary}  {korollar}
-\deftranslation[to = bm]{Corollary}  {Korollar}
-\deftranslation[to = nn]{corollary}  {korollar}
-\deftranslation[to = nn]{Corollary}  {Korollar}
-\deftranslation[to = bm]{definition} {definisjon}
-\deftranslation[to = bm]{Definition} {Definisjon}
-\deftranslation[to = nn]{definition} {definisjon}
-\deftranslation[to = nn]{Definition} {Definisjon}
-\deftranslation[to = bm]{definitions}{definisjoner}
-\deftranslation[to = bm]{Definitions}{Definisjoner}
-\deftranslation[to = nn]{definitions}{definisjonar}
-\deftranslation[to = nn]{Definitions}{Definisjonar}
-\deftranslation[to = bm]{example}    {eksempel}
-\deftranslation[to = bm]{Example}    {Eksempel}
-\deftranslation[to = nn]{example}    {d\o{}me}
-\deftranslation[to = nn]{Example}    {D\o{}me}
-\deftranslation[to = bm]{examples}   {eksempler}
-\deftranslation[to = bm]{Examples}   {Eksempler}
-\deftranslation[to = nn]{examples}   {d\o{}me}
-\deftranslation[to = nn]{Examples}   {D\o{}me}
-\deftranslation[to = bm]{fact}       {faktum}
-\deftranslation[to = bm]{Fact}       {Faktum}
-\deftranslation[to = nn]{fact}       {faktum}
-\deftranslation[to = nn]{Fact}       {Faktum}
-\deftranslation[to = bm]{facts}      {fakta}
-\deftranslation[to = bm]{Facts}      {Fakta}
-\deftranslation[to = nn]{facts}      {faktum}
-\deftranslation[to = nn]{Facts}      {Faktum}
-\deftranslation[to = bm]{hypothesis} {hypotese}
-\deftranslation[to = bm]{Hypothesis} {Hypotese}
-\deftranslation[to = nn]{hypothesis} {hypotese}
-\deftranslation[to = nn]{Hypothesis} {Hypotese}
-\deftranslation[to = bm]{notation}   {notasjon}
-\deftranslation[to = bm]{Notation}   {Notasjon}
-\deftranslation[to = nn]{notation}   {notasjon}
-\deftranslation[to = nn]{Notation}   {Notasjon}
-\deftranslation[to = bm]{observation}{observasjon}
-\deftranslation[to = bm]{Observation}{Observasjon}
-\deftranslation[to = nn]{observation}{observasjon}
-\deftranslation[to = nn]{Observation}{Observasjon}
-\deftranslation[to = bm]{property}   {egenskap}
-\deftranslation[to = bm]{Property}   {Egenskap}
-\deftranslation[to = nn]{property}   {eigenskap}
-\deftranslation[to = nn]{Property}   {Eigenskap}
-\deftranslation[to = bm]{proposition}{proposisjon}
-\deftranslation[to = bm]{Proposition}{Proposisjon}
-\deftranslation[to = nn]{proposition}{proposisjon}
-\deftranslation[to = nn]{Proposition}{Proposisjon}
-\deftranslation[to = bm]{remark}     {bemerkning}
-\deftranslation[to = bm]{Remark}     {Bemerkning}
-\deftranslation[to = nn]{remark}     {merknad}
-\deftranslation[to = nn]{Remark}     {Merknad}
-\deftranslation[to = bm]{remarks}    {bemerkninger}
-\deftranslation[to = bm]{Remarks}    {Bemerkninger}
-\deftranslation[to = nn]{remarks}    {merknadar}
-\deftranslation[to = nn]{Remarks}    {Merknadar}
-\deftranslation[to = bm]{theorem}    {teorem}
-\deftranslation[to = bm]{Theorem}    {Teorem}
-\deftranslation[to = nn]{theorem}    {teorem}
-\deftranslation[to = nn]{Theorem}    {Teorem}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%% Define additional theorem-like environments:
-\declaretheorem[style   = plain,
-                sibling = theorem,
-                name    = {\translate[to=\OMlang]{Conjecture}}]
-                {conjecture}
-\declaretheorem[style   = plain,
-                sibling = theorem,
-                name    = {\translate[to=\OMlang]{Facts}}]
-                {facts}
-\declaretheorem[style   = plain,
-                sibling = theorem,
-                name    = {\translate[to=\OMlang]{Hypothesis}}]
-                {hypothesis}
-\declaretheorem[style   = plain,
-                sibling = theorem,
-                name    = {\translate[to=\OMlang]{Observation}}]
-                {observation}
-\declaretheorem[style   = plain,
-                sibling = theorem,
-                name    = {\translate[to=\OMlang]{Proposition}}]
-                {proposition}
-\declaretheorem[style = definition,
-                name  = {\translate[to=\OMlang]{Assumption}}]
-                {assumption}
-\declaretheorem[style = definition,
-                name  = {\translate[to=\OMlang]{Axiom}}]
-                {axiom}
-\declaretheorem[style = definition,
-                name  = {\translate[to=\OMlang]{Property}}]
-                {property}
-\declaretheorem[style    = definition,
-                numbered = no,
-                name     = {\translate[to=\OMlang]{Calculation}}]
-                {calculation}
-\declaretheorem[style    = definition,
-                numbered = no,
-                name     = {\translate[to=\OMlang]{Computation}}]
-                {computation}
-\declaretheorem[style   = definition,
-                sibling = theorem,
-                name    = {\translate[to=\OMlang]{Notation}}]
-                {notation}
-\declaretheorem[style = remark,
-                name  = {\translate[to=\OMlang]{Remark}}]
-                {remark}
-\declaretheorem[style   = remark,
-                sibling = remark,
-                name    = {\translate[to=\OMlang]{Remarks}}]
-                {remarks}
-
 
 \endinput

@@ -1,0 +1,106 @@
+% Theme for OsloMet – Oslo Metropolitan University
+%
+% Implemented by:
+% Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
+% Martin Helsø (martibhe@math.uio.no)
+%
+% Version 14-06-2020
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[LGR, T1]{fontenc}
+\hypersetup{colorlinks,
+            urlcolor  = omblue,
+            linkcolor =,
+            citecolor =}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Standard headers:
+\DeclareOptionBeamer{american}
+{
+    \def \OMlang {eng}
+    \def \OMlangII {american}
+}
+\DeclareOptionBeamer{english}
+{
+    \def \OMlang {eng}
+    \def \OMlangII {english}
+}
+\DeclareOptionBeamer{UKenglish}
+{
+    \def \OMlangII {english}\def \OMlang {eng}
+    \def \OMlangII {UKenglish}
+}
+\DeclareOptionBeamer{USenglish}
+{
+    \def \OMlang {eng}
+    \def \OMlangII {USenglish}
+}
+\DeclareOptionBeamer{norsk}
+{
+    \def \OMlang {bm}
+    \def \OMlangII {norsk}
+    \pretolerance = 2000
+    \tolerance    = 6000
+    \hbadness     = 6000
+}
+\DeclareOptionBeamer{nynorsk}
+{
+    \def \OMlang {nn}
+    \def \OMlangII {nynorsk}
+    \pretolerance = 2000
+    \tolerance    = 6000
+    \hbadness     = 6000
+}
+\urlstyle{same}
+
+
+%% Vertical text alignment:
+\DeclareOptionBeamer{c}{ \beamer@centeredtrue  }
+\DeclareOptionBeamer{t}{ \beamer@centeredfalse }
+
+
+%% Theorem numbers, gets sent along to inner theme:
+\DeclareOptionBeamer{unnumbered}{\PassOptionsToPackage{unnumbered}{beamerinnerthemeOsloMet}}
+\DeclareOptionBeamer{numbered}  {\PassOptionsToPackage{numbered}{beamerinnerthemeOsloMet}}
+\DeclareOptionBeamer{AMS}       {\PassOptionsToPackage{AMS}{beamerinnerthemeOsloMet}}
+
+
+%% Font, gets sent along to fonttheme:
+\DeclareOptionBeamer{SansSerif}{\PassOptionsToPackage{SansSerif}{beamerfontthemeOsloMet}}
+\DeclareOptionBeamer{MathSerif}{\PassOptionsToPackage{MathSerif}{beamerfontthemeOsloMet}}
+\DeclareOptionBeamer{Serif}{\PassOptionsToPackage{Serif}{beamerfontthemeOsloMet}}
+
+
+%% Automatic title frame:
+\DeclareOptionBeamer{TitlePage}{\PassOptionsToPackage{TitlePage}{beamerinnerthemeOsloMet}}
+\DeclareOptionBeamer{NoTitlePage}{\PassOptionsToPackage{NoTitlePage}{beamerinnerthemeOsloMet}}
+
+
+\ExecuteOptionsBeamer{english}
+\ExecuteOptionsBeamer{t}
+\ExecuteOptionsBeamer{unnumbered}
+\ExecuteOptionsBeamer{SansSerif}
+\ExecuteOptionsBeamer{TitlePage}
+\ProcessOptionsBeamer
+
+
+\RequirePackage[\OMlangII]{babel}
+
+%% Allow more stretching
+\setlength{\emergencystretch}{3em}
+
+\mode<presentation>
+
+\usefonttheme{OsloMet}
+\usecolortheme{OsloMet}
+\useoutertheme{OsloMet}
+\useinnertheme[\OMlang]{OsloMet}
+
+
+\mode<all>
+
+\endinput

@@ -1,0 +1,80 @@
+% Theme for OsloMet – Oslo Metropolitan University
+%
+% Implemented by:
+% Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
+% Martin Helsø (martibhe@math.uio.no)
+%
+% Version 14-06-2020
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Widescreen %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\mode<presentation>
+%% No navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Frame title %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{frametitle}
+{
+    \vbox
+    {
+        \strut\insertframetitle\strut
+    }
+    \vskip-1.3ex
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Head/footline %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{headline}{ \vspace*{1.7 mm} }
+\setbeamertemplate{footline}
+{
+    \hbox to \paperwidth
+    {%
+        \begin{beamercolorbox}[wd = \paperwidth,
+                               ht = 2.25ex,
+                               dp = 1ex]
+                              {footline}
+
+                \hspace*{0.9cm}
+                \usebeamerfont{author in head/foot}
+                \insertshortauthor
+                \hfill
+                \usebeamerfont{title in head/foot}
+                \insertshorttitle
+                \hfill
+                \usebeamerfont{date in head/foot}
+                \insertshortdate
+                \hspace*{2em}
+                \insertframenumber{} / \inserttotalframenumber
+                \hspace*{1cm}
+        \end{beamercolorbox}
+    }
+    \vskip0pt
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Toggleable logo %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\hidelogo}{\logo{}}
+\newcommand{\showlogo}
+{
+    \logo
+    {
+        
+        \includegraphics[height = 0.1\paperheight, viewport = 0 0 520 400]
+            {OM-images/OM-logo}
+    }
+}
+\showlogo
+
+\mode<all>

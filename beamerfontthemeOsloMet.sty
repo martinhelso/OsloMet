@@ -1,0 +1,127 @@
+% Theme for OsloMet – Oslo Metropolitan University
+%
+% Implemented by:
+% Nikolai Bjørnestøl Hansen (nikobjo@oslomet.no)
+% Martin Helsø (martibhe@math.uio.no)
+%
+% Version 16-07-2020
+
+
+\mode<presentation>
+
+\DeclareOptionBeamer{}{}
+
+%% Font:
+\providebool{neohellenic}
+\providebool{latinmodern}
+\DeclareOptionBeamer{SansSerif}
+{
+    \def \OMfont {default}
+    \setbool{neohellenic}{true}
+    \setbool{latinmodern}{false}
+    \AtBeginDocument{\sbox0{\(\mathsf{\xdef\mathsfgroup{\the\mathgroup}}\)}}
+    \def\operator@font{\mathgroup\mathsfgroup}
+}
+\DeclareOptionBeamer{MathSerif}
+{
+    \def \OMfont {professionalfonts}
+    \setbool{neohellenic}{false}
+    \setbool{latinmodern}{false}
+    \AtBeginDocument{\sbox0{\(\mathrm{\xdef\mathrmgroup{\the\mathgroup}}\)}}
+    \def\operator@font{\mathgroup\mathrmgroup}
+}
+\DeclareOptionBeamer{Serif}
+{
+    \def \OMfont {serif}
+    \setbool{neohellenic}{false}
+    \setbool{latinmodern}{true}
+    \AtBeginDocument{\sbox0{\(\mathrm{\xdef\mathrmgroup{\the\mathgroup}}\)}}
+    \def\operator@font{\mathgroup\mathrmgroup}
+}
+
+\ExecuteOptionsBeamer{SansSerif}
+\ProcessOptionsBeamer
+
+% Use a neohellenic font from the Greek Font Society
+% for small, greek letters. It is a sans serif that
+% matches Helvetica better in style and weight than
+% the standard Computer Modern.
+\ifbool{neohellenic}
+{
+    \DeclareSymbolFont{neomath}{OML}{neohellenic}{m}{n}
+    \DeclareMathSymbol{\alpha}\mathord{neomath}{"0B}
+    \DeclareMathSymbol{\beta}\mathord{neomath}{"0C}
+    \DeclareMathSymbol{\gamma}\mathord{neomath}{"0D}
+    \DeclareMathSymbol{\delta}\mathord{neomath}{"0E}
+    \DeclareMathSymbol{\epsilon}\mathord{neomath}{"0F}
+    \DeclareMathSymbol{\zeta}\mathord{neomath}{"10}
+    \DeclareMathSymbol{\eta}\mathord{neomath}{"11}
+    \DeclareMathSymbol{\theta}\mathord{neomath}{"12}
+    \DeclareMathSymbol{\theta}\mathord{neomath}{"12}
+    \DeclareMathSymbol{\iota}\mathord{neomath}{"13}
+    \DeclareMathSymbol{\kappa}\mathord{neomath}{"14}
+    \DeclareMathSymbol{\lambda}\mathord{neomath}{"15}
+    \DeclareMathSymbol{\mu}\mathord{neomath}{"16}
+    \DeclareMathSymbol{\nu}\mathord{neomath}{"17}
+    \DeclareMathSymbol{\xi}\mathord{neomath}{"18}
+    \DeclareMathSymbol{\pi}\mathord{neomath}{"19}
+    \DeclareMathSymbol{\rho}\mathord{neomath}{"1A}
+    \DeclareMathSymbol{\sigma}\mathord{neomath}{"1B}
+    \DeclareMathSymbol{\tau}\mathord{neomath}{"1C}
+    \DeclareMathSymbol{\upsilon}\mathord{neomath}{"1D}
+    \DeclareMathSymbol{\phi}\mathord{neomath}{"1E}
+    \DeclareMathSymbol{\chi}\mathord{neomath}{"1F}
+    \DeclareMathSymbol{\psi}\mathord{neomath}{"20}
+    \DeclareMathSymbol{\omega}\mathord{neomath}{"21}
+    \DeclareMathSymbol{\varepsilon}\mathord{neomath}{"22}
+    \DeclareMathSymbol{\vartheta}\mathord{neomath}{"23}
+    \DeclareMathSymbol{\varpi}\mathord{neomath}{"24}
+    \DeclareMathSymbol{\varrho}\mathord{neomath}{"25}
+    \DeclareMathSymbol{\varsigma}\mathord{neomath}{"26}
+    \DeclareMathSymbol{\varphi}\mathord{neomath}{"27}
+}
+{}
+
+\ifbool{latinmodern}
+{
+    \renewcommand{\rmdefault}{lmr} % Latin Modern Roman
+}
+{
+  \renewcommand{\rmdefault}{pbk}  % Bookman
+}
+
+\renewcommand{\sfdefault}{phv} % Helvetica
+
+\usefonttheme{\OMfont}
+
+\setbeamerfont*{titlelike}{series = \bfseries}
+\setbeamerfont*{title}{parent = titlelike, size = \huge}
+\setbeamerfont*{title in head/foot}{parent = titlelike}
+\setbeamerfont*{title in sidebar}{parent = titlelike, size=\tiny}
+
+\setbeamerfont*{subtitle}{size = \Large, series = \mdseries\normalfont}
+
+\setbeamerfont*{author}{parent = titlelike, size = \normalsize}
+\setbeamerfont*{author in head/foot}{parent = titlelike}
+\setbeamerfont*{author in sidebar}{parent = titlelike, size = \tiny}
+
+\setbeamerfont*{date}{parent = titlelike}
+\setbeamerfont*{date in head/foot}{parent = date}
+\setbeamerfont*{date in sidebar}{parent = date}
+
+\setbeamerfont*{section name}{size = \Large}
+\setbeamerfont*{section page}{size = \Huge, parent = titlelike}
+
+\setbeamerfont*{section in toc}{parent = titlelike}
+\setbeamerfont*{section in head/foot}{parent = titlelike}
+\setbeamerfont*{section in sidebar}{parent = titlelike, size = \tiny}
+
+\setbeamerfont*{bibliography entry author}{series = \bfseries}
+\setbeamerfont*{bibliography entry title}{series = \mdseries}
+
+\setbeamerfont*{frametitle}{parent = titlelike, size = \LARGE}
+
+\setbeamerfont*{abstract title}{parent = {abstract, titlelike}, size= \normalsize}
+
+\mode
+<all>

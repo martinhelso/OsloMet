@@ -3,7 +3,7 @@ Beamer theme for OsloMet - Oslo Metropolitan University
 
 Available on [Overleaf](https://www.overleaf.com/latex/templates/oslomet-beamer-theme/wknwhwkrzvgk).
 
-[![Link to example PDF](https://i.imgur.com/iPYKV66.png)](https://github.com/martinhelso/OsloMet/releases/download/v1.1/main.pdf)
+[![Link to example PDF](https://i.imgur.com/iPYKV66.png)](https://github.com/martinhelso/OsloMet/releases/download/v1.2/main.pdf)
 
 ## Logo
 The logo in the lower right corner can be removed from a specific `frame` using the macro `\hidelogo` outside of the `frame` like this:

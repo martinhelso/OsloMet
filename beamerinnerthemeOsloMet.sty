@@ -423,14 +423,13 @@
                 sibling = remark,
                 name    = {\translate[to=\OMlang]{Remarks}}]
                 {remarks}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Added functionality of referencing enumerate-items as boxes
 
 \newcommand{\enumref}[1]
 {{%
-        \leavevmode\unskip
-        \def\insertenumlabel{\ref{#1}}
-        \usebeamertemplate*{enumerate item}%
+    \leavevmode\unskip
+    \def\insertenumlabel{\ref{#1}}
+    \usebeamertemplate*{enumerate item}%
 }}

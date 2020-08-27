@@ -20,7 +20,7 @@ The command `\SectionPage` inserts a `[NoFrameNumbering, plain]` frame with yell
 The command `\SectionPage` is used outside of a `frame`, unlike `\sectionpage`. 
 
 ## Enumerated references
-The command `\enumref` inserts a reference to an enumerated item in the skape of a yellow box, like the ones used in the `enumerate` environment.
+The command `\enumref` inserts a reference to an enumerated item in the shape of a yellow box, like the ones used in the `enumerate` environment.
 
 ## Options
 Options are given as

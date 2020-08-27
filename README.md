@@ -15,7 +15,7 @@ The logo in the lower right corner can be removed from a specific `frame` using 
 ```
 Use `\showlogo` in the same manner to make the logo appear again. 
 
-## Section Page
+## Section page
 The command `\SectionPage` inserts a `[NoFrameNumbering, plain]` frame with yellow background issuing the `\sectionpage` command.
 The command `\SectionPage` is used outside of a `frame`, unlike `\sectionpage`. 
 

@@ -19,24 +19,23 @@
     \def \OMfont {default}
     \setbool{neohellenic}{true}
     \setbool{latinmodern}{false}
-    \AtBeginDocument{\sbox0{\(\mathsf{\xdef\mathsfgroup{\the\mathgroup}}\)}}
-    \def\operator@font{\mathgroup\mathsfgroup}
+    \DeclareSymbolFont{sfoperators}{OT1}{cmss}{m}{n}
+    \DeclareSymbolFontAlphabet{\mathsf}{sfoperators}
+    \def\operator@font{\mathgroup\symsfoperators}
 }
 \DeclareOptionBeamer{MathSerif}
 {
     \def \OMfont {professionalfonts}
     \setbool{neohellenic}{false}
     \setbool{latinmodern}{false}
-    \AtBeginDocument{\sbox0{\(\mathrm{\xdef\mathrmgroup{\the\mathgroup}}\)}}
-    \def\operator@font{\mathgroup\mathrmgroup}
+    \def\operator@font{\mathgroup\symoperators}
 }
 \DeclareOptionBeamer{Serif}
 {
     \def \OMfont {serif}
     \setbool{neohellenic}{false}
     \setbool{latinmodern}{true}
-    \AtBeginDocument{\sbox0{\(\mathrm{\xdef\mathrmgroup{\the\mathgroup}}\)}}
-    \def\operator@font{\mathgroup\mathrmgroup}
+    \def\operator@font{\mathgroup\symoperators}
 }
 
 \ExecuteOptionsBeamer{SansSerif}
